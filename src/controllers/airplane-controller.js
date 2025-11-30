@@ -54,8 +54,28 @@ async function getAirplane(req, res) {
   }
 }
 
+/**
+ * Airplane Controller
+ * Handles requests related to airplanes
+ * DELETE /airplanes/:id
+ */
+
+async function deleteAirplane(req, res) {
+  try {
+    const airplane = await AirplaneService.deleteAirplane(req.params.id);
+    successResponse.message = "Airplane deleted successfully";
+    successResponse.data = airplane;
+    res.status(StatusCodes.OK).json(successResponse);
+  } catch (error) {
+    errorResponse.message = "Failed to delete airplane";
+    errorResponse.error = error;
+    res.status(error.statusCode).json(errorResponse);
+  }
+}
+
 module.exports = {
   createAirplane,
   getAirplanes,
   getAirplane,
+  deleteAirplane,
 };
