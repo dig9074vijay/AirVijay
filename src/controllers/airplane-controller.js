@@ -36,7 +36,26 @@ async function getAirplanes(req, res) {
   }
 }
 
+/**
+ * Airplane Controller
+ * Handles requests related to airplanes
+ * GET /airplanes/:id
+ */
+async function getAirplane(req, res) {
+  try {
+    const airplane = await AirplaneService.getAirplane(req.params.id);
+    successResponse.message = "Airplane fetched successfully";
+    successResponse.data = airplane;
+    res.status(StatusCodes.OK).json(successResponse);
+  } catch (error) {
+    errorResponse.message = "Failed to fetch airplanes";
+    errorResponse.error = error;
+    res.status(error.statusCode).json(errorResponse);
+  }
+}
+
 module.exports = {
   createAirplane,
   getAirplanes,
+  getAirplane,
 };
