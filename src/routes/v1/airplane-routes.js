@@ -9,6 +9,8 @@ router.post(
   airplaneController.createAirplane
 );
 
+router.get("/", airplaneController.getAirplanes);
+
 module.exports = {
   airplaneRoutes: router,
 };
