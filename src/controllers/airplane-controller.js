@@ -73,9 +73,32 @@ async function deleteAirplane(req, res) {
   }
 }
 
+/**
+ * Airplane Controller
+ * Handles requests related to airplanes
+ * PATCH /airplanes/:id
+ */
+
+async function updateAirplane(req, res) {
+  try {
+    const airplane = await AirplaneService.updateAirplane(
+      req.params.id,
+      req.body
+    );
+    successResponse.message = "Airplane updated successfully";
+    successResponse.data = airplane;
+    res.status(StatusCodes.OK).json(successResponse);
+  } catch (error) {
+    errorResponse.message = "Failed to update airplane";
+    errorResponse.error = error;
+    res.status(error.statusCode).json(errorResponse);
+  }
+}
+
 module.exports = {
   createAirplane,
   getAirplanes,
   getAirplane,
   deleteAirplane,
+  updateAirplane,
 };

@@ -43,9 +43,18 @@ class CrudRepository {
   }
 
   async update(data, id) {
+
+    Logger.info(`Update result for id ${id}`);
     const result = await this.model.update(data, {
       where: { id: id },
     });
+    Logger.info(`Update result for id ${id}: ${result}`);
+    if (!result) {
+      throw new AppError(
+        "Not able to find the resource",
+        StatusCodes.NOT_FOUND
+      );
+    }
     return result;
   }
 }
