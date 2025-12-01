@@ -3,12 +3,15 @@ const { FlightController } = require("../../controllers");
 const { FlightMiddlewares } = require("../../middlewares");
 const router = express.Router();
 
-//POST /api/v1/airport
+//POST /api/v1/flight
 router.post(
   "/",
   FlightMiddlewares.validateCreateRequest,
   FlightController.createFlight
 );
+
+//GET /api/v1/flight
+router.get("/", FlightController.getAllFlights);
 
 // //GET /api/v1/airport/
 // router.get("/", AirportController.getAirports);

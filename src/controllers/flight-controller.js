@@ -23,6 +23,21 @@ async function createFlight(req, res) {
   }
 }
 
+async function getAllFlights(req, res) {
+  try {
+    const flights = await FlightService.getAllFlights(req.query);
+    successResponse.message = "Flights fetched successfully";
+    successResponse.data = flights;
+    res.status(StatusCodes.OK).json(successResponse);
+  } catch (error) {
+    console.log(error);
+    errorResponse.message = "Failed to fetch flights";
+    errorResponse.error = error;
+    res.status(error.statusCode).json(errorResponse);
+  }
+}
+
 module.exports = {
   createFlight,
+  getAllFlights,
 };
