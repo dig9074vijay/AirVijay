@@ -6,8 +6,8 @@ class FlightRepository extends CrudRepository {
     super(Flight);
   }
 
-  async getAllFlights(filter) {
-    const result = await Flight.findAll({ where: filter });
+  async getAllFlights(filter, sort) {
+    const result = await Flight.findAll({ where: filter, order: sort });
     if (!result) {
       throw new AppError(
         "Not able to find the resource",
