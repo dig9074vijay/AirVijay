@@ -8,9 +8,9 @@ const { flightRoutes } = require("./flight-routes");
 
 // Define your v1 routes here
 router.use("/airplanes", airplaneRoutes);
-router.use("/city", cityRoutes);
-router.use("/airport", airportRoutes);
-router.use("/flight", flightRoutes);
+router.use("/cities", cityRoutes);
+router.use("/airports", airportRoutes);
+router.use("/flights", flightRoutes);
 router.get("/", infoController.info);
 
 module.exports = router;
